@@ -106,6 +106,68 @@ public class MakeChange {
 		kb.close();
 	} // end of main
 
+	// Change Calculation Method
+
+	calcChange(double totalAmt, double tenderedPayment) {
+				int changeInts = 0, tens = 0, fives = 0, ones = 0, quarters = 0, dimes = 0, nickels = 0, pennies = 0, billsChange = 0, coinsChange = 0;
+				double changeOwed = 0.0;
+				String str1 = ""; 
+				// examples
+				//Amount: .67, Tendered: .50, Result: Error message
+				//Amount: .67, Tendered: 1.00, Result: 1 quarter, 1 nickel, 3 pennies.
+				//Amount: .59, Tendered: 1.00, Result: 1 quarter, 1 dime, 1 nickel, 1 penny.
+				//Amount: 3.96, Tendered: 20.00, Result: 1 ten dollar bill, 1 five dollar bill, 1 one dollar bill, 4 pennies.
+				//Amount: any amount less than 20.00, Tendered: anything greater than amount: correct denominations for correct change.
+				// calculate how much is owed
+				changeOwed = totalAmt - tenderedPayment;
+				// converstion to string, getting rid of decimal point, and then converted into an integer
+				str1 = String.valueOf(changeOwed).replace(".", "");
+				changeInts = Integer.parseInt(str1);
+				// Bills change amount
+				billsChange = changeInts / 100;
+				// Coins change amoount
+				coinsChange = changeInts % 100;
+				// check if $10 bills are needed for change
+				
+				// Calculate Bills change
+				while (billsChange > 9) {
+					tens++;
+					billsChange -= 10;
+				}
+				// $5 bills
+				while (billsChange > 4) {
+					fives++;
+					billsChange -= 5;
+				}
+				
+				while (billsChange > 0) {
+					ones++;
+					billsChange--;
+				}
+				
+				// Calculate Coins change
+				
+				while (coinsChange > 24) {
+					quarters++;
+					coinsChange -= 25;
+				}
+				
+				while (coinsChange > 9) {
+					dimes++;
+					coinsChange -= 10;
+				}
+				
+				while (coinsChange > 4) {
+					nickels++;
+					coinsChange -= 5;
+				}
+				
+				while (coinsChange > 0) {
+					pennies++;
+					coinsChange--;
+				}
+			}
+
 	// Print Method with transaction message
 	public static void printMsg(double totalAmt, double tenderedPayment, String trnxMsg) {
 		// e.g. output Amount: .67, Tendered: .50, Result: Error message
