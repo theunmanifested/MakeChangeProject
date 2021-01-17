@@ -21,7 +21,7 @@ public class MakeChange {
 		System.out.println(
 				"Hello!, and Welcome to our \"Er'thing $20 and Under\", and to our wonderful SuperExpress Text-Based Cashier Lane or, as we like to call it... SETBCL!!\n");
 		System.out.println("We really really REALLY trust our customers here");
-		// total should not exceed $20 ////////////////UNTESTED
+		// total should not exceed $20 
 		do {
 			System.out.println("Please type in the total amount ($20.00 or less) of your shopping today");
 			System.out.print("(Don't forget to add the cents!): ");
