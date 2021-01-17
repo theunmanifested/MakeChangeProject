@@ -61,6 +61,9 @@ public class MakeChange {
 
 		} while (tendered < total);
 
+
+		
+		
 		// Call the Change Calculation method to determine accurate denominations
 		calChangeTrnxMsg = calcChange(total, tendered);
 
@@ -82,7 +85,7 @@ public class MakeChange {
 		int changeInts = 0, tens = 0, fives = 0, ones = 0, quarters = 0, dimes = 0, nickels = 0, pennies = 0, billsChange = 0,
 				coinsChange = 0, dCounter = 0;
 		boolean printTens = true, printFives = true, printOnes = true, printQuarters = true, printDimes = true, printNickels = true, printPennies = true;
-		double changeOwed = 9.98;
+		double changeOwed = tenderedPayment - totalAmt;
 		String str1 = "";
 		String trnxMsg = "";
 		
