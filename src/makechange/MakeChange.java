@@ -106,5 +106,9 @@ public class MakeChange {
 		kb.close();
 	} // end of main
 
-	
+	// Print Method with transaction message
+	public static void printMsg(double totalAmt, double tenderedPayment, String trnxMsg) {
+		// e.g. output Amount: .67, Tendered: .50, Result: Error message
+		System.out.println("Amount: " + totalAmt + ",\tTendered: " + tenderedPayment + ",\tResult: " + trnxMsg);
+	}
 }
