@@ -13,6 +13,7 @@ public class MakeChange {
 		// Hint: Mod Operator
 
 		// The user is prompted asking for the price of the item.
+		int changeInts = 0;
 		double total = 0.0;
 		double tendered = 0.0;
 		String bye = ""; // if customer does not want to keep shopping after entering too little payment
@@ -61,11 +62,13 @@ public class MakeChange {
 
 		} while (tendered < total);
 
-
+		// modify values to get only integers
+		changeInts = ((int)(tendered * 100)) - ((int)(total * 100)) ;
+		
 		
 		
 		// Call the Change Calculation method to determine accurate denominations
-		calChangeTrnxMsg = calcChange(total, tendered);
+		calChangeTrnxMsg = calcChange(changeInts);
 
 		// Print the results and
 		printMsg(total, tendered, calChangeTrnxMsg);
@@ -77,16 +80,13 @@ public class MakeChange {
 		kb.close();
 	} // end of main
 
-	// Change Calculation Method
+	
 
 	
 	// Calculate Change Method
-	public static String calcChange(double totalAmt, double tenderedPayment) {
-		int changeInts = 0, tens = 0, fives = 0, ones = 0, quarters = 0, dimes = 0, nickels = 0, pennies = 0, billsChange = 0,
-				coinsChange = 0, dCounter = 0;
+	public static String calcChange(int changeInts) {
+		int billsChange, coinsChange, tens = 0, fives = 0, ones = 0, quarters = 0, dimes = 0, nickels = 0, pennies = 0, dCounter = 0;
 		boolean printTens = true, printFives = true, printOnes = true, printQuarters = true, printDimes = true, printNickels = true, printPennies = true;
-		double changeOwed = tenderedPayment - totalAmt;
-		String str1 = "";
 		String trnxMsg = "";
 		
 		// Amount: any amount less than 20.00, Tendered: anything greater than amount:
@@ -95,15 +95,14 @@ public class MakeChange {
 		// to facilitate handling division and mod operations, multiply by 100 to deal
 		// with integers. Parens over multiplication is critical
 
-		str1 = String.valueOf(changeOwed).replace(".", "");
-		changeInts = Integer.parseInt(str1);
-
 		// Bills change amount
 		billsChange = changeInts / 100;
 		// Coins change amoount
 		coinsChange = changeInts % 100;
-		// Bills change
 
+		
+		
+		// Bills change
 		while (billsChange > 9) {
 			tens++;
 			billsChange -= 10;
