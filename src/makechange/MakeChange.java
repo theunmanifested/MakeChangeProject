@@ -1,16 +1,15 @@
+// Make Change (Cash Register) by Walter S. Valdez
+// Wk 1 Homework
+//
+// Notes:
+// 1. Utilized an array to facilitate printing. 
+// 2. Only accepts total amounts of $20 and under per instructions
+
 package makechange;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class MakeChange {
 	public static void main(String[] args) {
-		// calculate amount of change to be returned to a customer
-		// notify attendant how many of each piece of currency ($20 ,$10 ,$5 ,$1, .25c,
-		// .10c, .05c, .01c)
-		// is needed to make the change for customer, and denominations NOT used are NOT
-		// displayed
-		// Use largest bill/coin denomination
-		// Hint: Mod Operator
 
 		// The user is prompted asking for the price of the item.
 		int changeInts = 0;
@@ -39,8 +38,8 @@ public class MakeChange {
 				break;
 				// Exact amount, exits after printing
 			} else if (tendered == total) {
-				System.out.println("Exact Amount! Well, that simplifies things. Thanks.");
-				printMsg(total, tendered, "Exact Amount Entered. No Change Required.");
+				System.out.println("\nExact Amount! That simplifies things -- Thanks");
+				printMsg(total, tendered, "Exact Amount Entered -- No Change Required.");
 				System.exit(0);
 				// Tendered is less than the total, asks again or if user opts for "bye", exits
 				// after printing
@@ -53,7 +52,7 @@ public class MakeChange {
 				kb.nextLine(); // to stop for user input
 				bye = kb.nextLine().toLowerCase();
 				if (bye.equals("bye")) {
-					printMsg(total, tendered, "Insufficient Funds At This Time. Please come again!");
+					printMsg(total, tendered, "Insufficient Funds At This Time -- Please come again!");
 					System.exit(0);
 				} else {
 					System.out.println("\nAlright, let's try this again.");
@@ -63,9 +62,7 @@ public class MakeChange {
 		} while (tendered < total);
 
 		// modify values to get only integers
-		changeInts = ((int)(tendered * 100)) - ((int)(total * 100)) ;
-		
-		
+		changeInts = ((int)(tendered * 100)) - ((int)(total * 100));		
 		
 		// Call the Change Calculation method to determine accurate denominations
 		calChangeTrnxMsg = calcChange(changeInts);
@@ -74,13 +71,11 @@ public class MakeChange {
 		printMsg(total, tendered, calChangeTrnxMsg);
 
 		// Proper goodbye from
-		System.out.println("\nSETBCL Was Lucky To Have You. Have A Nice Day!!!");
+		System.out.println("\nEr'thing $20 and Under store was Lucky To Have You \n\nHave A Nice Day!!!");
 
 		// close scanner
 		kb.close();
 	} // end of main
-
-	
 
 	
 	// Calculate Change Method
@@ -88,19 +83,11 @@ public class MakeChange {
 		int billsChange, coinsChange, tens = 0, fives = 0, ones = 0, quarters = 0, dimes = 0, nickels = 0, pennies = 0, dCounter = 0;
 		boolean printTens = true, printFives = true, printOnes = true, printQuarters = true, printDimes = true, printNickels = true, printPennies = true;
 		String trnxMsg = "";
-		
-		// Amount: any amount less than 20.00, Tendered: anything greater than amount:
-		// correct denominations for correct change.
-		// calculate how much is owed
-		// to facilitate handling division and mod operations, multiply by 100 to deal
-		// with integers. Parens over multiplication is critical
 
 		// Bills change amount
 		billsChange = changeInts / 100;
 		// Coins change amoount
-		coinsChange = changeInts % 100;
-
-		
+		coinsChange = changeInts % 100;		
 		
 		// Bills change
 		while (billsChange > 9) {
@@ -244,7 +231,7 @@ public class MakeChange {
 			}
 		}
 			
-			// concatenate the denoms string array into a concise transactional message to return
+			// concatenate the denoms string array into a concise transaction message to return
 			for (int i = 0; i < dCounter; i++ ) {
 				trnxMsg += denoms[i];
 				if (i == (dCounter - 1)) {
@@ -258,7 +245,7 @@ public class MakeChange {
 
 	// Print Method with transaction message
 	public static void printMsg(double totalAmt, double tenderedPayment, String trnxMsg) {
-		// e.g. output Amount: .67, Tendered: .50, Result: Error message
+		// printout message
 		System.out.println("Amount: " + totalAmt + ",\tTendered: " + tenderedPayment + ",\tResult: " + trnxMsg);
 	}
 }
